@@ -2,6 +2,7 @@
 
 module BlogsHelper
   def format_content(blog)
-    blog.content.gsub("\n", '<br>').html_safe # rubocop:disable Rails/OutputSafety
+    escaped = h(blog.content)
+    simple_format(escaped, sanitize: false)
   end
 end
